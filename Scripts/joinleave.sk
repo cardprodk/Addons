@@ -1,0 +1,10 @@
+on join:
+    send title "&b&lCardPro &f&lSMP" with subtitle "&eVelkommen, %player%!" to player
+    send action bar "&aGod fornøjelse på serveren!" to player
+    loop all players:
+        if loop-player is not player:
+            send "&8[&c&lCardPro&8] &f%player% &9Joinede Serveren" to loop-player
+
+on quit:
+    loop all players:
+        send "&8[&c&lCardPro&8] &f%player% &9Leavede Serveren" to loop-player

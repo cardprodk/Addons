@@ -1,0 +1,42 @@
+options:
+    prefix_warp: &8[&c&lCardPro&8] &r
+
+command /setwarp <text>:
+    permission: admin.setwarp
+    trigger:
+        if arg 1 is not set:
+            send "{@prefix_warp}&eBrug: /setwarp <navn>"
+            stop
+
+        set {warps::%arg 1%} to location of player
+        send "{@prefix_warp}&eWarp &f%arg 1% &eer nu sat!"
+        play sound "entity.player.levelup" to player
+
+command /warp <text>:
+    trigger:
+        if arg 1 is not set:
+            send "{@prefix_warp}&eBrug: /warp <navn>"
+            stop
+
+        if {warps::%arg 1%} is not set:
+            send "{@prefix_warp}&cWarp &f%arg 1% &cfindes ikke!"
+            stop
+
+        teleport player to {warps::%arg 1%}
+        send "{@prefix_warp}&eTeleporterer til warp &f%arg 1%&e..."
+        play sound "entity.enderman.teleport" to player
+
+command /warps:
+    trigger:
+        if {warps::*} is not set:
+            send "{@prefix_warp}&cDer er ingen warps sat endnu."
+            stop
+
+        set {_warpText} to ""
+        loop {warps::*}:
+            if {_warpText} is "":
+                set {_warpText} to loop-index
+            else:
+                set {_warpText} to "%{_warpText}%, %loop-index%"
+
+        send "{@prefix_warp}&eTilgængelige warps: &f%{_warpText}%"

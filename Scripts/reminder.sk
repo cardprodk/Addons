@@ -1,0 +1,30 @@
+every 10 minutes:
+    set {_r} to random integer between 1 and 4
+
+    if {_r} = 1:
+        send "&6&l[REMINDER] &fHusk at &eSUBSCRIBE &fpå YouTube! &b→ &7yt.cardpro.dk" to all players
+
+    if {_r} = 2:
+        send "&6&l[REMINDER] &fJoin vores &bDiscord&f! &b→ &7discord.cardpro.dk" to all players
+
+    if {_r} = 3:
+        send "&6&l[REMINDER] &fSe os &dLIVE på Twitch&f! &b→ &7twitch.cardpro.dk" to all players
+
+    if {_r} = 4:
+        send "&6&l[REMINDER] &fBesøg vores &7Hjemmeside&f! &b→ &7https://cardpro.dk/" to all players
+
+command /reminder:
+    trigger:
+        set {_r} to random integer between 1 and 4
+
+        if {_r} = 1:
+            send "&6&l[REMINDER] &fHusk at &eSUBSCRIBE &fpå YouTube! &b→ &7yt.cardpro.dk" to all players
+
+        if {_r} = 2:
+            send "&6&l[REMINDER] &fJoin vores &bDiscord&f! &b→ &7discord.cardpro.dk" to all players
+
+        if {_r} = 3:
+            send "&6&l[REMINDER] &fSe os &dLIVE på Twitch&f! &b→ &7twitch.cardpro.dk" to all players
+
+        if {_r} = 4:
+            send "&6&l[REMINDER] &fBesøg vores &7Hjemmeside&f! &b→ &7http://cardpro.dk/" to all players

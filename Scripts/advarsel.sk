@@ -1,0 +1,52 @@
+command /warn <player> <text>:
+    permission: warn.use
+    trigger:
+        if arg-1 is online:
+            set {_player} to arg-1
+            set {_reason} to arg-2
+            add 1 to {warnings.%{_player}%}
+            set {_total} to {warnings.%{_player}%}
+
+            # Info til alle spillere og til den advarslede
+            send "&8[&c&lCardPro&8]] &f%{_player}% &9har fået en advarsel: %{_reason}% (Total: %{_total}%)" to all players
+            send "&8[&c&lCardPro&8] &9Du har fået en advarsel! Grund: %{_reason}% (Total: %{_total}%)" to {_player}
+
+            if {_total} = 1:
+                execute console command "mute %{_player}% 5m"
+                send "&8[&c&lCardPro&8] &f%{_player}% &9er blevet &a muted &9i 5 minutter!" to all players
+
+            if {_total} = 2:
+                kick {_player} due to "&8[&c&lCardPro&8] &9Du blev &cKICKED &9efter 2 advarsler! Grund: %{_reason}%, Total: %{_total}%"
+
+            if {_total} = 3:
+                # Spilleren ser beskeden inden tempban
+                send "&8[&c&lCardPro&8] &9Du blev &cTEMPBAN &9i 1 dag efter 3 advarsler! Grund: %{_reason}%, Total: %{_total}%" to {_player}
+                # Udfør selve tempban via console
+                execute console command "tempban %{_player}% 1d Advarsler x3"
+                # Info til alle andre spillere
+                send "&8[&c&lCardPro&8] &9%{_player}% blev &cTEMPBAN &9i 1 dag efter 3 advarsler! Grund: %{_reason}%, Total: %{_total}%" to all players
+
+        else:
+            send "&8[&c&lCardPro&8] &9Spilleren er ikke online!" to player
+
+command /unwarn <player>:
+    permission: warn.use
+    trigger:
+        if {warnings.%arg-1%} is set:
+            if {warnings.%arg-1%} > 0:
+                remove 1 from {warnings.%arg-1%}
+                send "&8[&c&lCardPro&8] &f%arg-1% &9har fået en advarsel fjernet! (Total: %{warnings.%arg-1%}%)" to all players
+                if arg-1 is online:
+                    send "&8[&c&lCardPro&8] &9Du har fået en advarsel fjernet! (Total: %{warnings.%arg-1%}%)" to arg-1
+            else:
+                send "&8[&c&lCardPro&8] &9Spilleren har ingen advarsler!" to player
+        else:
+            send "&8[&c&lCardPro&8] &9Spilleren har ingen advarsler!" to player
+
+command /warnings <player>:
+    permission: warn.use
+    trigger:
+        if {warnings.%arg-1%} is set:
+            send "&8[&c&lCardPro&8] &f%arg-1% &9har %{warnings.%arg-1%}% advarsler" to player
+        else:
+            send "&8[&c&lCardPro&8] &f%arg-1% &9har 0 advarsler" to player

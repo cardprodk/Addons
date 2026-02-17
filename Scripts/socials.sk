@@ -1,0 +1,44 @@
+command /discord:
+    trigger:
+        send "&8&m--------------------------------------------"
+        send " &9&lDiscord &7| CardPro Community"
+        send "&7Join vores community her:"
+        send "&bhttps://discord.gg/NF2qpXZfrD"
+        send "&8&m--------------------------------------------"
+
+command /twitch:
+    trigger:
+        send "&8&m--------------------------------------------"
+        send " &5&lTwitch &7| CardPro Streams"
+        send "&7Se CardPro live her:"
+        send "&dhttps://www.twitch.tv/cardproyt"
+        send "&8&m--------------------------------------------"
+
+command /youtube:
+    trigger:
+        send "&8&m--------------------------------------------"
+        send " &f&lYou&c&lTube &7| CardPro Media"
+        send "&7Se vores videoer her:"
+        send "&chttps://www.youtube.com/@cardprodk"
+        send "&8&m--------------------------------------------"
+
+command /hjemmeside:
+    trigger:
+        send "&8&m--------------------------------------------"
+        send " &a&lHjemmeside &7| CardPro"
+        send "&7Besøg vores hjemmeside her:"
+        send "&acardpro.dk"
+        send "&8&m--------------------------------------------"
+
+command /socials:
+    trigger:
+        send "&8&m--------------------------------------------"
+        send " &d&lCardPro &7» &fSocial Links"
+        send ""
+        send "&9Discord:   &bhttps://discord.gg/NF2qpXZfrD"
+        send "&5Twitch:    &dhttps://www.twitch.tv/cardproyt"
+        send "&fYou&cTube:   &chttps://www.youtube.com/@cardprodk"
+        send "&aWebsite:   &acardpro.dk"
+        send ""
+        send "&cTak fordi du støtter CardPro ❤️"
+        send "&8&m--------------------------------------------"

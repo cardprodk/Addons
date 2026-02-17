@@ -1,0 +1,61 @@
+options:
+    prefix: &c&lCardPro SMP &8» &f
+    maincolor: §x§0§0§a§1§f§b
+
+function startRTP(p: player, w: text):
+    set {_startX} to floor(x-coordinate of {_p})
+    set {_startY} to floor(y-coordinate of {_p})
+    set {_startZ} to floor(z-coordinate of {_p})
+    play sound "block.note_block.pling" to {_p}
+    loop 6 times:
+        set {_currentX} to floor(x-coordinate of {_p})
+        set {_currentY} to floor(y-coordinate of {_p})
+        set {_currentZ} to floor(z-coordinate of {_p})
+        if {_currentX} != {_startX}:
+            send action bar "{@prefix}&cTeleport annulleret – du bevægede dig." to {_p}
+            play sound "entity.villager.no" to {_p}
+            stop
+        if {_currentY} != {_startY}:
+            send action bar "{@prefix}&cTeleport annulleret – du bevægede dig." to {_p}
+            play sound "entity.villager.no" to {_p}
+            stop
+        if {_currentZ} != {_startZ}:
+            send action bar "{@prefix}&cTeleport annulleret – du bevægede dig." to {_p}
+            play sound "entity.villager.no" to {_p}
+            stop
+        send action bar "{@prefix}{@maincolor}Teleport om &f%6 - loop-number% {@maincolor}sekunder..." to {_p}
+        play sound "ui.button.click" to {_p}
+        wait 1 second
+    executeRTP({_p}, {_w})
+
+function executeRTP(p: player, w: text):
+    set {_world} to world {_w}
+    set {_limit} to 5000
+    set {_min} to 0 - {_limit}
+    set {_x} to random integer between {_min} and {_limit}
+    set {_z} to random integer between {_min} and {_limit}
+    set {_y} to y-coordinate of highest block at location({_x}, 0, {_z}, {_world})
+    teleport {_p} to location({_x}, {_y}+1, {_z}, {_world})
+    play sound "entity.player.levelup" to {_p}
+    send action bar "{@prefix}{@maincolor}Du er blevet teleporteret sikkert." to {_p}
+
+command /rtp:
+    trigger:
+        set {_gui} to chest inventory with 3 rows named "&8&lRTP"
+        set slot 13 of {_gui} to grass block named "{@maincolor}&lOVERWORLD"
+        set lore of slot 13 of {_gui} to "&7Teleport et tilfældigt sted i verdenen!"
+        open {_gui} to player
+
+on inventory click:
+    if name of event-inventory is "&8&lRTP":
+        cancel event
+        if clicked slot is not 13:
+            stop
+        close player's inventory
+        if {rtp.cooldown::%player%} is set:
+            if difference between now and {rtp.cooldown::%player%} < 2 minutes:
+                set {_left} to 2 minutes - difference between now and {rtp.cooldown::%player%}
+                send "{@prefix}&cVent %{_left}% før du kan bruge RTP igen." to player
+                stop
+        set {rtp.cooldown::%player%} to now
+        startRTP(player, "world")

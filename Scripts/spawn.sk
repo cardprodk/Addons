@@ -1,0 +1,13 @@
+command /spawn:
+    trigger:
+        if {spawn.cooldown.%player%} is set:
+            set {_time} to difference between {spawn.cooldown.%player%} and now
+            if {_time} < 1 minutes:
+                set {_left} to 1 minutes - {_time}
+                send "&8[&c&lCardPro&8] &cDu kan først bruge &e/spawn &cigen om &e%{_left}%&c." to player
+                stop
+
+        set {spawn.cooldown.%player%} to now
+
+        teleport player to location(-48.5, 88, 335.5, world("world"), 89.55, 1.2)
+        send "&8[&c&lCardPro&8] &aDu er nu teleporteret til spawn!"

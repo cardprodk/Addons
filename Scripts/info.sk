@@ -1,0 +1,57 @@
+options:
+    prefix: &c&lCardPro SMP: &f
+
+# Command til at åbne info-GUI
+command /info:
+    trigger:
+        # Opret double chest GUI (6 rækker / 54 slots)
+        set {_infoGUI} to a new chest inventory with 6 row with name "&aCardPro SMP"
+        
+        # Fyld alle tomme slots med grå glas for struktur
+        loop 54 times:
+            set slot loop-number of {_infoGUI} to gray_stained_glass_pane named " "
+
+        # Øverste række: Regler | Om CardPro SMP | Socials
+        set slot 10 of {_infoGUI} to book named "&eRegler" with lore "&fKlik for at se reglerne"
+        set slot 13 of {_infoGUI} to paper named "&bOm CardPro SMP" with lore "&fKlik for at få info om serveren"
+        set slot 16 of {_infoGUI} to painting named "&9Socials" with lore "&fKlik for at se serverens sociale medier"
+
+        # Midterste række: IP | Hjemmeside | Commands
+        set slot 37 of {_infoGUI} to compass named "&6IP" with lore "&fKlik for at se Serverens IP'er"
+        set slot 40 of {_infoGUI} to enchanted_book named "&dHjemmeside" with lore "&fKlik for at besøge vores hjemmeside"
+        set slot 43 of {_infoGUI} to clock named "&aCommands" with lore "&fKlik for at se alle Commands"
+
+        # Åbn GUI for spilleren
+        open {_infoGUI} to player
+
+# Håndtering af klik i GUI
+on inventory click:
+    if name of event-inventory is "&aCardPro SMP":
+        cancel event  # Forhindrer spiller i at tage items
+        close player's inventory
+
+        # Øverste række
+        if clicked slot is 10:  # Regler
+            execute player command "regler"
+            play sound "ui.button.click" to player
+
+        if clicked slot is 13:  # Om CardPro SMP
+            send "{@prefix}&aCardPro SMP er en survival SMP server med fokus på fællesskab og fair play." to player
+            play sound "ui.button.click" to player
+
+        if clicked slot is 16:  # Socials
+            execute player command "socials"
+            play sound "ui.button.click" to player
+
+        # Midterste række
+        if clicked slot is 37:  # IP
+            execute player command "ip"
+            play sound "ui.button.click" to player
+
+        if clicked slot is 40:  # Hjemmeside
+            execute player command "hjemmeside"
+            play sound "ui.button.click" to player
+
+        if clicked slot is 43:  # Commands
+            execute player command "help"
+            play sound "ui.button.click" to player

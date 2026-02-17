@@ -1,0 +1,37 @@
+options:
+    spam_cooldown: 2
+
+on load:
+    clear {bad_words::*}
+    add "fuck" to {bad_words::*}
+    add "lort" to {bad_words::*}
+    add "shit" to {bad_words::*}
+    add "bitch" to {bad_words::*}
+    add "idiot" to {bad_words::*}
+    add "svin" to {bad_words::*}
+    add "retard" to {bad_words::*}
+    add "kys" to {bad_words::*}
+    add "asshole" to {bad_words::*}
+    add "motherfucker" to {bad_words::*}
+    add "so" to {bad_words::*}
+    add "nigger" to {bad_words::*}
+    add "neer" to {bad_words::*}
+    add "neger" to {bad_words::*}
+    add "negger" to {bad_words::*}
+    add "neeger" to {bad_words::*}
+    add "dum" to {bad_words::*}
+
+on chat:
+    loop {bad_words::*}:
+        if message contains loop-value:
+            cancel event
+            send "&8[&c&lCardPro&8] &cDu må ikke skrive det ord her!" to player
+            stop
+
+    if {lastchat.%player%} is set:
+        if difference between now and {lastchat.%player%} < {@spam_cooldown} seconds:
+            cancel event
+            send "&8[&c&lCardPro&8] &cVent lidt før du chatter igen!" to player
+            stop
+
+    set {lastchat.%player%} to now

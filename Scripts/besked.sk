@@ -1,0 +1,6 @@
+command /besked <text>:
+    permission: staff.besked
+    trigger:
+        set {_msg} to arg-1
+        loop all players:
+            send "&8[&c&lCardPro&8] %{_msg}%" to loop-player
