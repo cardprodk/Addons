@@ -1,2 +1,0 @@
-on respawn:
-    set respawn location to location(-48.5, 88, 335.5, world("world"), 89.55, 1.2)

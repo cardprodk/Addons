@@ -1,8 +1,0 @@
-command /coords:
-    trigger:
-        send "&8&m----------------------------------"
-        send " &b&lCardPro &7|  &rDine koordinater:"
-        send "&7X: &f%round(x-coordinate of player's location)%"
-        send "&7Y: &f%round(y-coordinate of player's location)%"
-        send "&7Z: &f%round(z-coordinate of player's location)%"
-        send "&8&m----------------------------------"

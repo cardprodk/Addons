@@ -1,6 +1,0 @@
-on bed enter:
-    set {_time} to time of world of player
-
-    if {_time} is between 12541 and 23458:
-        set time of world of player to day
-        broadcast "&6Natten er over, du har sovet dig til dag!"

@@ -1,9 +1,0 @@
-command /credits:
-    description: Se serverens credits
-    trigger:
-        send "&8&m----------------------------------"
-        send " &b&lCardPro &7|  &rServer Credits:"
-        send "&fBygger: &aMalthe, Willum, ShadowMC"
-        send "&fKodning: &bBadutMC, Malthe, Willum, ShadowMC"
-        send "&fServer Host: &dStadric.dk"
-        send "&8&m----------------------------------"

@@ -1,6 +1,0 @@
-on damage of player:
-    if world of victim is "world_the_end":
-        if victim's y-coordinate < 0:
-            teleport victim to location(-48.5, 88, 335.5, world("world"), 89.55, 1.2)
-            send "&8[&c&lCardPro&8] &rDu faldt i void! Teleporteret til spawn." to victim
-            cancel event

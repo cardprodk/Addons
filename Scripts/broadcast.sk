@@ -1,6 +1,0 @@
-command /broadcast <text>:
-    permission: server.broadcast
-    permission message: &8[&c&lCardPro&8] &cDu har ikke adgang til denne kommando.
-    trigger:
-        set {_msg} to arg-1
-        send {_msg} to all players

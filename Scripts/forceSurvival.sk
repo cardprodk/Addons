@@ -1,5 +1,0 @@
-on join:
-    wait 1 tick
-    if player is op:
-        stop
-    set player's gamemode to survival

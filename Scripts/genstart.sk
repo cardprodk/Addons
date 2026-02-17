@@ -1,6 +1,0 @@
-command /genstart:
-    permission: admin.genstart
-    trigger:
-        send "&8[&c&lCardPro&8] &rServeren genstarter om 30 sekunder!"
-        wait 30 seconds
-        execute console command "stop"
